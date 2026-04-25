@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-bg: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-text: #0f172a;
+  --theme-border: #e2e8f0;
+  --theme-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.dark {
+  --theme-bg: #0a0a0a;
+  --theme-surface: #0a0a0a;
+  --theme-text: #e2e8f0;
+  --theme-border: #262626;
+  --theme-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+@layer base {
+  body {
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
+    transition: background-color 420ms ease-in-out, color 420ms ease-in-out;
+  }
+
+  * {
+    transition-property: background-color, border-color, color, box-shadow, fill, stroke;
+    transition-duration: 420ms;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 dark:bg-slate-700 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-400 dark:bg-slate-600; }
+
+/* Animated targets are visible by default */
+.sidebar-container,
+.sidebar-nav-item,
+.header-container,
+.header-search,
+.header-icon,
+.header-profile,
+.title-section,
+.stat-card,
+.main-chart-overview,
+.main-chart-activity,
+.secondary-widget-sales,
+.secondary-widget-traffic,
+.table-section-container,
+.top-products-row {
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+/* Hide only while entrance timeline is active */
+body.page-animating .sidebar-container,
+body.page-animating .sidebar-nav-item,
+body.page-animating .header-container,
+body.page-animating .header-search,
+body.page-animating .header-icon,
+body.page-animating .header-profile,
+body.page-animating .title-section,
+body.page-animating .stat-card,
+body.page-animating .main-chart-overview,
+body.page-animating .main-chart-activity,
+body.page-animating .secondary-widget-sales,
+body.page-animating .secondary-widget-traffic,
+body.page-animating .table-section-container,
+body.page-animating .top-products-row {
+  opacity: 0;
+}
+
+.theme-root {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.theme-surface {
+  background-color: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  box-shadow: var(--theme-shadow);
+}
+
+.theme-transition-overlay {
+  background: radial-gradient(circle at center, rgba(148, 163, 184, 0.16), rgba(15, 23, 42, 0.2));
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
